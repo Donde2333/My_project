@@ -16,9 +16,15 @@ print(s2)
 L = [('Bob', 75), ('Adam', 92), ('Bart', 66), ('Lisa', 88)]
 
 
-def by_name(t):
+def by_name(t):  # 按名称排列
     return t[0]
 
 
+def by_poin(t):  # 按分数排列
+    return t[1]
+
+
 L2 = sorted(L, key=by_name)
+L3 = sorted(L, key=by_poin)
 print("按名字排序:", L2)
+print("按分数排序:", L3)
