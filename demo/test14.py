@@ -17,8 +17,8 @@ try:
             print(row)
 except FileNotFoundError as e:
     print("未找到装箱单文件。正在创建一个新的……")
-    with open(fpath, "w", encoding="utf-8") as file:
+    with open(fpath, "w", encoding="utf-8", newline='') as file:
         file_write = csv.writer(file)
-        file_write.writerow(data)
+        file_write.writerows(data)
 finally:
     print("运行结束……")
