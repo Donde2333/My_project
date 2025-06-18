@@ -5,14 +5,14 @@ from datetime import datetime
 
 
 class RankingManager():
-    def __init__(self, path="GuessNumGame/scores.csv"):
+    def __init__(self, path="GuessNumGame/data/scores.csv"):
         self.__path = path
 
         # 首次使用时创建带标题的文件
         if not os.path.exists(self.__path):
             with open(self.__path, "w", encoding="utf-8", newline="") as f:
                 writer = csv.writer(f)
-                writer.writerow(["姓名", "分数", "记录时间"])
+                writer.writerow(["姓名", "尝试次数", "记录时间"])
 
     def add_record(self, name, score):
         """添加一条记录"""
