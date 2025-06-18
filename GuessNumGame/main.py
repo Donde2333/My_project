@@ -10,7 +10,8 @@ Rank_system = RankingManager()
 def show_header(title):
     """显示带标题的头部"""
     os.system('cls' if os.name == 'nt' else 'clear')  # 清屏
-    print(f"\n=== {title} ===")
+    print("=" * 30)
+    print(f"  ===     {title}      ===")
     print("=" * 30)
 
 
@@ -55,8 +56,7 @@ def login_flow():
         success, message = user_system.login(username, password)
 
         if success:
-            print(f"\n{message}")
-            enter_to_retune()
+            # print(f"\n{message}")
             return username  # 返回登录成功的用户名
         else:
             attempts -= 1
@@ -113,7 +113,7 @@ def game_menu(current_user):
                 print("请先登录!")
                 enter_to_retune()
             else:
-                print("进入游戏中...")
+                os.system('cls' if os.name == 'nt' else 'clear')  # 清屏
                 result_name, result_scores = guess_number_game(current_user)
                 if result_name != 0 and result_scores != 0:
                     Rank_system.add_record(result_name, result_scores)
@@ -132,11 +132,14 @@ def game_menu(current_user):
             exit()
 
         elif choice == "4":  # 切换用户
-            # current_user = None
-            print("已退出当前用户")
-            enter_to_retune()
-            return None  # 返回None表示要切换用户
-
+            reload = input("是否确定要重新登录？Y/N：")
+            if reload.upper() == "Y":
+                return None  # 返回None表示要切换用户
+            elif reload.upper() == "N":
+                enter_to_retune()
+            else:
+                print("无效选择，请重新输入")
+                enter_to_retune()
         else:
             print("无效选择，请重新输入")
             enter_to_retune()

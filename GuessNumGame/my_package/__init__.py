@@ -2,7 +2,7 @@
 
 
 # 导入包内模块，简化外部访问
-from .logic import guess_number_game
+from .guess_logic import guess_number_game
 from .ranking import RankingManager
 from .user import User
 
