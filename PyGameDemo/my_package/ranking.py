@@ -5,7 +5,7 @@ from datetime import datetime
 
 
 class RankingManager():
-    def __init__(self, path="GuessNumGame/data/scores.csv"):
+    def __init__(self, path="PyGameDemo/data/scores.csv"):
         self.__path = path
 
         # 首次使用时创建带标题的文件

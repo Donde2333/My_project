@@ -8,7 +8,7 @@ import csv
 
 class User():
 
-    def __init__(self, path="GuessNumGame/data/user.csv"):
+    def __init__(self, path="PyGameDemo/data/user.csv"):
         self.__path = path
 
     def _read_users(self):

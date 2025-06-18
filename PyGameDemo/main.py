@@ -75,6 +75,7 @@ def start_menu():
         show_header("欢迎~！")
         print("1. 用户注册")
         print("2. 用户登录")
+        print("3. 退出系统")
         print("=" * 30)
         choice = input("请选择操作: ")
         if choice == "1":  # 注册
@@ -86,6 +87,9 @@ def start_menu():
             logged_user = login_flow()
             if logged_user:
                 return logged_user
+        elif choice == "3":
+            print("拜拜~")
+            exit()
         else:
             print("无效选择，请重新输入")
             enter_to_retune()
@@ -103,7 +107,7 @@ def game_menu(current_user):
         print("1. 开始游戏-猜数字")
         print("2. 排行榜")
         print("3. 退出系统")
-        print("4. 切换用户")
+        print("4. 返回登录")
         print("=" * 30)
 
         choice = input("请选择操作: ")
