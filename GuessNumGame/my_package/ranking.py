@@ -14,6 +14,16 @@ class RankingManager():
                 writer = csv.writer(f)
                 writer.writerow(["姓名", "尝试次数", "记录时间"])
 
+    def _print_list(self, ranklist):
+        """格式化输出结果"""
+        # print("排行榜前10名：")
+        print("-" * 40)
+        print(f"{'排名':<3}{'姓名':<6}{'尝试次数':<10}{'记录时间'}")
+        print("-" * 40)
+
+        for i, (name, score, time) in enumerate(ranklist[:10], 1):
+            print(f"{i:<5}{name:<10}{score:<10}{time}")
+
     def add_record(self, name, score):
         """添加一条记录"""
         record_time = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -38,9 +48,8 @@ class RankingManager():
                             records.append((row[0], float(row[1]), row[2]))
                         except ValueError:
                             continue
-
         # 按分数降序排序
-        return sorted(records, key=lambda x: x[1], reverse=True)
+        return self._print_list(sorted(records, key=lambda x: x[1], reverse=True))
 
 
 if __name__ == "__main__":
@@ -48,19 +57,10 @@ if __name__ == "__main__":
     manager = RankingManager()
 
     # 添加多条记录
-    manager.add_record("yan", 100)
-    manager.add_record("li", 99)
-    manager.add_record("wang", 95)
-    manager.add_record("zhao", 98)
+    manager.add_record("yan", 3)
+    manager.add_record("li", 4)
+    manager.add_record("wang", 5)
+    manager.add_record("zhao", 6)
 
     # 只调用一次获取全部排行数据
     ranklist = manager.get_ranklist()
-
-    # 格式化输出结果
-    print("排行榜前10名：")
-    print("-" * 40)
-    print(f"{'排名':<5}{'姓名':<10}{'分数':<10}{'记录时间'}")
-    print("-" * 40)
-
-    for i, (name, score, time) in enumerate(ranklist[:10], 1):
-        print(f"{i:<5}{name:<10}{score:<10}{time}")

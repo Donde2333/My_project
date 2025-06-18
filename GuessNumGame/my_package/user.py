@@ -32,33 +32,33 @@ class User():
 
     def register(self, username, password):
         if not username or not password:
-            return (False, "用户名和密码不能为空")
+            return False, "用户名和密码不能为空"
 
         users_data = self._read_users()
         if username in users_data:
-            return (False, "用户名已存在")
+            return False, "用户名已存在"
 
         self.__username = username
         self.__key = ''.join([chr(random.randint(48, 122)) for i in range(20)])
         self.__password = hmac.new(self.__key.encode(
             "utf-8"), password.encode("utf-8"), digestmod="SHA256").hexdigest()
         self._save_user(self.__username, self.__password, self.__key)  # 写入数据
-        return (True, "注册成功！")
+        return True, "注册成功！"
 
     def login(self, username, password):
         user_data = self._read_users()
 
         if username not in user_data:
-            return (False, "用户名不存在")
+            return False, "用户名不存在"
 
         user_password, user_key = user_data[username]
 
         input_password = hmac.new(user_key.encode(
             "utf-8"), password.encode("utf-8"), digestmod="SHA256").hexdigest()
         if input_password == user_password:
-            return (True, "登录成功")
+            return True, "登录成功"
         else:
-            return (False, "密码错误")
+            return False, "密码错误"
 
 
 if __name__ == "__main__":
