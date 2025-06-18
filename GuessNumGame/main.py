@@ -69,7 +69,7 @@ def login_flow():
     return None
 
 
-def load_menu():
+def start_menu():
     """登录/注册菜单"""
     while True:
         show_header("欢迎~！")
@@ -91,8 +91,8 @@ def load_menu():
             enter_to_retune()
 
 
-def main_menu(current_user):
-    """主菜单"""
+def game_menu(current_user):
+    """游戏菜单"""
 
     while True:
         show_header("Python游戏")
@@ -135,12 +135,26 @@ def main_menu(current_user):
             # current_user = None
             print("已退出当前用户")
             enter_to_retune()
+            return None  # 返回None表示要切换用户
 
         else:
             print("无效选择，请重新输入")
             enter_to_retune()
 
 
+def mian():
+    """主控制循环"""
+    while True:
+        # 首先显示登录/注册菜单
+        user = start_menu()
+
+        # 然后进入游戏主菜单
+        user = game_menu(user)
+
+        # 如果game_menu返回None，表示需要切换用户，重新执行start_menu
+        if user is None:
+            continue
+
+
 if __name__ == "__main__":
-    user = load_menu()
-    main_menu(user)
+    mian()

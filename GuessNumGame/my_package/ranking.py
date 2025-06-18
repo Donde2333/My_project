@@ -49,7 +49,7 @@ class RankingManager():
                         except ValueError:
                             continue
         # 按分数降序排序
-        return self._print_list(sorted(records, key=lambda x: x[1], reverse=True))
+        return self._print_list(sorted(records, key=lambda x: x[1]))
 
 
 if __name__ == "__main__":
